@@ -17,12 +17,21 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 
 // 라우팅
+// get: /
 app.get('/', function(req, res) {
    res.sendFile(__dirname + '/public/form.html');
 });
 
+// post: /email_post
 app.post('/email_post', function(req, res) {
   console.log(req.body);
   //res.send(`<h1>welcome!<br/>${req.body.email}<h1>`);
   res.render('email.ejs', {email: req.body.email});
+});
+
+// post ajax: /ajax_send_email
+app.post('/ajax_send_email', function(req, res) {
+  console.log(req.body);
+  var responseData = {result: 'ok', email: req.body.email};
+  res.json(responseData);
 });

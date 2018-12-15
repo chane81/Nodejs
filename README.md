@@ -41,3 +41,4 @@ node --experimental-modules my-app.mjs
     - body-parser 모듈 설치
     - ejs 모듈 설치
     - ejs 템플릿으로 json 객체 보내기
+    - ajax request, response
