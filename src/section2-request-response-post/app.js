@@ -13,7 +13,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-// ejs(백엔드 템플릿) 모듈 설정
+// 뷰엔진 - ejs(백엔드 템플릿) 모듈 설정
 app.set('view engine', 'ejs');
 
 // 라우팅

@@ -4,17 +4,42 @@
 node --experimental-modules my-app.mjs
 ```
 
-## nodemon 설치
+# 디버깅 설정
+
+- /.vscode/launch.json
+
+```json
+{
+  // IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.
+  // 기존 특성에 대한 설명을 보려면 가리킵니다.
+  // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "nodemon",
+      "runtimeExecutable": "nodemon",
+      "program": "${workspaceFolder}/src/section2-request-response-post/app.js",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
+```
+
+# nodemon 설치
 
     yarn global add nodemon
 
-## ES6 문법 가능하게 설치
+# ES6 문법 가능하게 설치
 
-### yarn add
+## yarn add
 
     yarn add babel-cli babel-preset-env --dev
 
-### pachage.json 설정
+## pachage.json 설정
 
 ```json
     "babel": {
@@ -27,6 +52,8 @@ node --experimental-modules my-app.mjs
         "serve": "node dist/index.js"
     }
 ```
+
+# 섹션 설명
 
 ## section1
 

@@ -13,11 +13,26 @@
     <button class="ajaxsend">ajaxsend</button>
 
     <div class="result"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script>
       document.querySelector(".ajaxsend").addEventListener("click", function() {
         var inputdata = document.forms[0].elements[0].value;
-        sendAjax("http://localhost:3000/ajax_send_email", inputdata);
+
+        // XMLHttpRequest 방식
+        //sendAjax("http://localhost:3000/ajax_send_email", inputdata);
+
+        // axios 방식
+        sendAjaxAxios("http://localhost:3000/ajax_send_email", inputdata);
       });
+
+      function sendAjaxAxios(url, data) {
+        var data = { email: data };
+
+        axios.post(url, data).then(res => {
+          if (res.data.result !== "ok") return;
+          document.querySelector(".result").innerHTML = res.data.email;
+        });
+      }
 
       function sendAjax(url, data) {
         var data = { email: data };
