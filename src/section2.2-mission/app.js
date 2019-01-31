@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 // 라우팅
 app.get('/', function(req, res) {
   res.sendfile(__dirname + '/public/form.html');
-});
+});3
 
 app.get('/test-info/:id', function(req, res) {
 
@@ -45,8 +45,17 @@ app.get('/test-info/:id', function(req, res) {
     }
   ];
 
-  const result = dummyData.filter(data => data.id === reqId);
+  let result = dummyData.filter(data => data.id === reqId);
+
+  if (result.length === 0) {
+    result = [{
+      id: 0,
+      name: '데이터 없음',
+      address: '데이터 없음'
+    }];
+  };
 
   console.log(result);
+
   res.json(result);
 });
