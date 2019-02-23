@@ -1,6 +1,6 @@
+const log = console.log;
 const zlib = require('zlib');
 const fs = require('fs');
-const log = console.log;
 
 
 // read stream

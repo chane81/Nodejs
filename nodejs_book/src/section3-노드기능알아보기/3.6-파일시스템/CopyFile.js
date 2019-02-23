@@ -1,5 +1,6 @@
-const fs = require('fs');
 const log = console.log;
+const fs = require('fs');
+
 
 fs.copyFile('./files/readme.txt', './files/copyReadme.txt', err => {
   if (err) {

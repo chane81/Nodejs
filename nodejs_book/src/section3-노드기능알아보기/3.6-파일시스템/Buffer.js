@@ -1,8 +1,8 @@
-const Buffer = require('buffer').Buffer;
+const log = console.log;
+const { Buffer } = require('buffer');
 
 
 // 버퍼 길이, toString
-const log = console.log;
 const buffer1 = Buffer.from('저를 버퍼로 바꿔보세요');
 log(`from(): ${buffer1}`);
 log(`length: ${buffer1.length}`);

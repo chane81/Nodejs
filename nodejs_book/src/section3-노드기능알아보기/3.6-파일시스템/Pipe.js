@@ -1,5 +1,6 @@
-const fs = require('fs');
 const log = console.log;
+const fs = require('fs');
+
 
 // stream read
 const readStream = fs.createReadStream('./files/readme.txt');

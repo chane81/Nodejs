@@ -1,5 +1,6 @@
-const fs = require('fs');
 const log = console.log;
+const fs = require('fs');
+
 
 fs.access('./folder', fs.constants.F_OK | fs.constants.R_OK | fs.constants.W_OK, err => {
   if (err) {

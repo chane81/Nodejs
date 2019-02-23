@@ -1,5 +1,6 @@
-const fs = require('fs');
 const log = console.log;
+const fs = require('fs');
+
 
 // 버퍼 read, highWaterMark(버퍼 크기) - 16byte 로 나눔, 기본값은 64kb
 const readStream = fs.createReadStream('./files/readme.txt', { highWaterMark: 16 });
