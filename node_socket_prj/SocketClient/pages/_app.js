@@ -15,12 +15,12 @@ export default class MyApp extends App {
     return {pageProps}
   }
 
-  // IE10 ??
+  // IE10 대응
   static childContextTypes = {
     router: PropTypes.object,
   };
 
-  // IE10 ??
+  // IE10 대응
   getChildContext() {
     const { router } = this.props;
     return { router };
@@ -32,7 +32,7 @@ export default class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>????</title>
+          <title>테스트</title>
         </Head>
         <Component {...pageProps} />
       </Container>
