@@ -1,0 +1,33 @@
+{
+  "name": "SocketServer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/dotenv": "^6.1.0",
+    "@types/koa": "^2.0.48",
+    "@types/koa-bodyparser": "^4.2.2",
+    "@types/koa-router": "^7.0.39",
+    "@types/lodash": "^4.14.121",
+    "dotenv": "^6.2.0",
+    "http": "^0.0.0",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.11",
+    "nodemon": "^1.18.10",
+    "path": "^0.12.7",
+    "socket.io": "^2.2.0",
+    "source-map": "^0.7.3",
+    "source-map-support": "^0.5.10",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "scripts": {
+    "start": "nodemon --watch src --delay 1 --exec ts-node ./src/server.ts",
+    "build": "webpack --mode development --config ./config/webpack.config.js"
+  }
+}
