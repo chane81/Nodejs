@@ -39,7 +39,7 @@ node --experimental-modules my-app.mjs
 
     yarn add babel-cli babel-preset-env --dev
 
-## pachage.json 설정
+## package.json 설정
 
 ```json
     "babel": {
