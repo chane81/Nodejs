@@ -6,9 +6,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "core-js": "^2.6.5",
     "es6-promise": "^4.2.6",
-    "next": "^8.0.2",
+    "immutable": "^4.0.0-rc.12",
+    "next": "^7.0.2",
+    "node-sass": "^4.11.0",
     "promise": "^8.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",

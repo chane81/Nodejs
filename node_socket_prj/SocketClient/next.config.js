@@ -1,3 +1,5 @@
+const withSass = require('@zeit/next-sass')
+
 module.exports = {
   webpack: function (cfg) {
     const originalEntry = cfg.entry
@@ -17,3 +19,6 @@ module.exports = {
     return cfg
   }
 }
+
+// scss 파일 로드되게 세팅
+module.exports = withSass();

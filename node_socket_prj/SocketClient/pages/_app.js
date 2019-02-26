@@ -3,7 +3,6 @@ import Head from 'next/head';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 export default class MyApp extends App {
   static async getInitialProps ({ Component, router, ctx }) {
     let pageProps = {}
