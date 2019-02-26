@@ -136,7 +136,8 @@ class Index extends Component {
           </Head>
           <div className={'wrap'}>
             <div className={'chat-box'}>
-              
+            
+
             </div>
             <div className={'chat-input-box shadow'} onClick={this.handleBoxClick}>
               <input onChange={this.handleChange} ref={ref => { this.txtChat = ref }} onKeyPress={this.handleSendKeyPress} value={this.state.txtValue} type="text"></input>
