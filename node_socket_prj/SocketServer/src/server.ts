@@ -111,7 +111,7 @@ app.use(
 // socket.io 서버 listen
 server.listen(socketIoPort, (err: any) => {
 	if (err) throw err;
-	console.log(`> Ready on SOCKET.IO Server http://localhost:${socketIoPort}`);
+	console.log(`> SOCKET.IO Server Listening! http://localhost:${socketIoPort}`);
 });
 
 // net 서버 listen
@@ -160,5 +160,5 @@ netServer.on('connection', (socket) => {
 });
 
 netServer.listen(netPort, () => {
-	console.log('> NET Server Listening!');
+	console.log(`> NET Server Listening! 127.0.0.1:${netPort}`);
 });
