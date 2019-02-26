@@ -61,6 +61,8 @@ socketIo.on('connection', (socket:any) => {
 
   socket.on('client.msg.send', (context:any) => {
     console.log(context);
+
+    socket.broadcast.emit('client.msg.receive', context);
   });
 
   // socket.on('message.chat2', data => {

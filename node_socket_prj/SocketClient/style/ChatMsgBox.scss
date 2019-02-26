@@ -1,0 +1,38 @@
+@import 'global.scss';
+
+.chat-mag-wrap {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+
+  .chat-msg {
+    margin: 1rem 1rem;
+    padding: 0.1rem 1rem;
+    max-width: 25rem;
+    min-height: 3rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .chat-right {
+    justify-content: flex-end;
+  
+    div {
+      color: white;
+      background: #845ef7;
+    }
+  }
+  
+  .chat-left {
+    justify-content: flex-start;
+  
+    div {
+      color: #495057;
+      background: #dbe4ff;
+    }
+  }
+}
+
