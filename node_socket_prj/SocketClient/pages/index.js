@@ -101,84 +101,6 @@ class Index extends Component {
   }
 
   render () {
-<<<<<<< HEAD
-      return (
-        <div>
-          <style global jsx>{`
-            body {
-              text-align: center;
-              background-color: #f6f6f6;
-            }
-
-            input {
-              border-style: groove;
-            }
-
-            button {
-              border-style: groove;
-            }
-
-            .shadow {
-              box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
-            }
-          `}</style>
-          
-          <style jsx>{`
-            input:focus {
-              outline: none;
-            }
-
-            .wrap {
-              margin: 2rem 2rem;
-              padding: 2rem 2rem 0 2rem;
-              border: 1px solid #ced4da;
-              height: 40rem;
-              border-radius: 5px;
-            }
-            .chat-box {
-              border: 1px solid #e9ecef;
-              background: white;
-              height: 80%;
-              border-radius: 0 5px 5px 0;
-            }
-            .chat-input-box {
-              background: white;
-              height: 50px;
-              line-height: 50px;
-              border: 1px solid #e9ecef;
-              border-radius: 5px;
-              margin: 3.5rem 0 0 0;
-            }
-            .chat-input-box input {
-              width: 80%;
-              border-style: none;
-              font-size: 0.9rem;
-            }
-            .btn-add-container {
-              float: right;
-              background: linear-gradient(to right, #6478fb, #8763fb);
-              display: block;
-              width: 3rem;
-              border-radius: 0 5px 5px 0;
-            }
-            .btn-add-container:hover {
-              cursor: pointer;
-            }
-            .btn-add {
-              color: white;
-              vertical-align: middle;
-            }
-          `}</style>
-
-          <Head title="Home" >
-          </Head>
-          <div className={'wrap'}>
-            <div className={'chat-box'}>
-              
-            </div>
-            <div className={'chat-input-box shadow'} onClick={this.handleBoxClick}>
-              <input onChange={this.handleChange} ref={ref => { this.txtChat = ref }} onKeyPress={this.handleSendKeyPress} value={this.state.txtValue} type="text"></input>
-=======
     console.log('test', this.state);
     const { txtValue, chat } = this.state;
     const msgBox = chat.map((data, index) => (
@@ -198,7 +120,6 @@ class Index extends Component {
           </div>
           <div className={'chat-input-box shadow'} onClick={this.handleBoxClick}>
               <input onChange={this.handleChange} ref={ref => { this.txtChat = ref }} onKeyPress={this.handleSendKeyPress} value={txtValue} type="text"></input>
->>>>>>> fd4c7a3... 자기자신이 메시지 보냈을때, 메시지 받았을 때 ui 가 다르게 나오게 수정
               <span className={'btn-add-container'} onClick={this.handleSend}>
                 <i className={"fas fa-plus btn-add"}></i>
               </span>
