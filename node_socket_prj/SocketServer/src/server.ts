@@ -3,6 +3,7 @@ import koa from 'koa';
 import router from 'koa-router';
 import http from 'http' ;
 import bodyParser from 'koa-bodyparser';
+import cors from 'koa2-cors';
 import _ from 'lodash';
 
 
@@ -77,9 +78,9 @@ socketIo.on('connection', (socket:any) => {
 
 // http 라우터 관련 로직
 // CORS 관련 옵션 설정
-// app.use(cors({
-//   origin: (ctx) => '*'
-// }));
+app.use(cors({
+   origin: (ctx) => '*'
+}));
 
 // app.use(bodyParser());
 

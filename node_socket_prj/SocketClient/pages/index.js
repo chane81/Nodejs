@@ -101,14 +101,10 @@ class Index extends Component {
   }
 
   render () {
-    console.log('test', this.state);
     const { txtValue, chat } = this.state;
     const msgBox = chat.map((data, index) => (
         <ChatMsgBox isSelf={data.isSelf} msg={data.msg} key={index}></ChatMsgBox>  
     ));
-
-    console.log(msgBox);
-    
 
     return (
       <div>
