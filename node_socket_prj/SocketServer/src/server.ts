@@ -7,13 +7,13 @@ import cors from 'koa2-cors';
 import net from 'net';
 import _ from 'lodash';
 
-// 설정 세팅
+/* 설정 세팅 =================================================================================================*/
 dotenv.config();
 const app = new koa();
 const server = new http.Server(app.callback());
 const socketIo = require('socket.io')(server, {
-	pingInterval: 10000,
-	pingTimeout: 10000,
+	pingInterval: 10000,												// ping 인터벌
+	pingTimeout: 10000,													// ping 타임아웃
 	transports: [ 'websocket', 'polling' ]
 });
 
@@ -32,11 +32,19 @@ interface clientType {
 	gubun: string;
 }
 
+// CORS 관련 옵션 설정
+app.use(
+	cors({
+		origin: (ctx) => '*'
+	})
+);
+
 // 접속 클라이언틑 정보
 const clientPool: clientType[] = [];
+/* 설정 세팅 =================================================================================================*/
 
-const socketIoObj = null;
 
+/* SOCKET.IO 서버 =================================================================================================*/
 // 소켓통신 이벤트 핸들러
 // connection
 socketIo.on('connection', (socket: any) => {
@@ -87,13 +95,7 @@ socketIo.on('connection', (socket: any) => {
 	// });
 });
 
-// http 라우터 관련 로직
-// CORS 관련 옵션 설정
-app.use(
-	cors({
-		origin: (ctx) => '*'
-	})
-);
+
 
 // app.use(bodyParser());
 
@@ -113,7 +115,11 @@ server.listen(socketIoPort, (err: any) => {
 	if (err) throw err;
 	console.log(`> SOCKET.IO Server Listening! http://localhost:${socketIoPort}`);
 });
+/* SOCKET.IO 서버 =================================================================================================*/
 
+
+
+/* NET 서버 =======================================================================================================*/
 // net 서버 listen
 // var netServer = net.createServer((socket: any) => {
 // 	console.log('> Ready On NET Server!');
@@ -162,3 +168,4 @@ netServer.on('connection', (socket) => {
 netServer.listen(netPort, () => {
 	console.log(`> NET Server Listening! 127.0.0.1:${netPort}`);
 });
+/* NET 서버 =======================================================================================================*/

@@ -1,7 +1,0 @@
-H:\#2. Project\Nodejs\node_socket_prj\NetClient\NetClient\bin\Debug\NetClient.exe.config
-H:\#2. Project\Nodejs\node_socket_prj\NetClient\NetClient\bin\Debug\NetClient.exe
-H:\#2. Project\Nodejs\node_socket_prj\NetClient\NetClient\bin\Debug\NetClient.pdb
-H:\#2. Project\Nodejs\node_socket_prj\NetClient\NetClient\obj\Debug\NetClient.csprojAssemblyReference.cache
-H:\#2. Project\Nodejs\node_socket_prj\NetClient\NetClient\obj\Debug\NetClient.csproj.CoreCompileInputs.cache
-H:\#2. Project\Nodejs\node_socket_prj\NetClient\NetClient\obj\Debug\NetClient.exe
-H:\#2. Project\Nodejs\node_socket_prj\NetClient\NetClient\obj\Debug\NetClient.pdb
