@@ -1,0 +1,14 @@
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\bin\Debug\SocketNetClient.exe.config
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\bin\Debug\SocketNetClient.exe
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\bin\Debug\SocketNetClient.pdb
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.csprojAssemblyReference.cache
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.Form1.resources
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.Properties.Resources.resources
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.csproj.GenerateResource.cache
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.csproj.CoreCompileInputs.cache
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.exe
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.pdb
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\bin\Debug\Newtonsoft.Json.dll
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\bin\Debug\Newtonsoft.Json.pdb
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\bin\Debug\Newtonsoft.Json.xml
+D:\02. SideProject\NodeJs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.csproj.CopyComplete

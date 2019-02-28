@@ -10,6 +10,7 @@
     "@types/koa-router": "^7.0.39",
     "@types/koa2-cors": "^2.0.1",
     "@types/lodash": "^4.14.121",
+    "@types/uuid": "^3.4.4",
     "dotenv": "^6.2.0",
     "http": "^0.0.0",
     "koa": "^2.7.0",
@@ -25,6 +26,7 @@
     "source-map-support": "^0.5.10",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3333",
+    "uuid": "^3.3.2",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
     "webpack-node-externals": "^1.7.2"

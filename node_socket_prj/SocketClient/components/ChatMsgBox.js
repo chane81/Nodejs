@@ -7,6 +7,7 @@ import styles from '../style/ChatMsgBox.scss';
 const ChatMsgBox = ({ msg, isSelf}) => {
 
   console.log(isSelf);
+  msg = msg.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
   return (
     <div className={`chat-mag-wrap ${ isSelf ? 'chat-right' : 'chat-left' }`}>
