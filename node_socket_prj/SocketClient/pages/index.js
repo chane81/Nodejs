@@ -42,6 +42,7 @@ class Index extends Component {
       this.fnScrollMove();
     });
 
+    // state 에 socket 객체 담기
     this.setState({ socket });
   }
 
@@ -68,7 +69,11 @@ class Index extends Component {
     } else {
       // 서버에 메시지 전송
       const socket  = this.state.socket;
-      socket.emit('client.msg.send', this.state.txtValue);
+
+      socket.emit('client.msg.send', this.state.txtValue, context => {
+        console.log('client send 이벤트');
+        //console.log(context);
+      });
 
       // state 에 메시지 담기
       await this.setState({ 

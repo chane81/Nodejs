@@ -6,7 +6,7 @@ import styles from '../style/ChatMsgBox.scss';
 
 const ChatMsgBox = ({ msg, isSelf}) => {
 
-  console.log(isSelf);
+  //console.log(isSelf);
   msg = msg.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
   return (
