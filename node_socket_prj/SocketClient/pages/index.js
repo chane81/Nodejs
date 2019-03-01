@@ -23,7 +23,7 @@ class Index extends Component {
 
   // 소켓 연결
   componentDidMount () {
-    const socket = io("http://localhost:5000/", {
+    const socket = io("http://localhost:5000", {
       transports: ['websocket', 'polling'],
       query: {
         socketName: this.state.socketName
@@ -101,13 +101,12 @@ class Index extends Component {
   }
 
   render () {
-    console.log('test', this.state);
     const { txtValue, chat } = this.state;
     const msgBox = chat.map((data, index) => (
         <ChatMsgBox isSelf={data.isSelf} msg={data.msg} key={index}></ChatMsgBox>  
     ));
 
-    console.log(msgBox);
+    //console.log(msgBox);
     
 
     return (

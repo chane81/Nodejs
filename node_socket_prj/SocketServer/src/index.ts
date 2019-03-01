@@ -7,14 +7,15 @@ import cors from 'koa2-cors';
 import net from 'net';
 import _ from 'lodash';
 import uuidv1 from 'uuid/v1';
+import io from 'socket.io';
 
 /* 설정 세팅 =================================================================================================*/
 dotenv.config();
 const app = new koa();
 const server = new http.Server(app.callback());
-const socketIo = require('socket.io')(server, {
-	pingInterval: 10000,												// ping 인터벌
-	pingTimeout: 10000,													// ping 타임아웃
+const socketIo = io(server, {
+	pingInterval: 10000, // ping 인터벌
+	pingTimeout: 10000, // ping 타임아웃
 	transports: [ 'websocket', 'polling' ]
 });
 
@@ -25,7 +26,6 @@ const netPort: number = Number(process.env.NET_PORT) || 5001;
 
 // 개발모드인지 여부 true/false
 const dev: boolean = process.env.NODE_ENV !== 'production';
-
 
 // 클라이언트 타입
 interface clientType {
@@ -42,27 +42,23 @@ app.use(
 	})
 );
 
-
 // 접속 클라이언틑 정보
 const clientPool: clientType[] = [];
-
 
 // 접속한 클라이언트들 로그로 보여주기
 function connectClients() {
 	console.log('접속 클라이언트들:');
 	clientPool.map((data) => {
-			const {uniqueId, socketName, socketGubun} = data;
-			console.log(`socketGubun:${socketGubun}, uniqueId:${uniqueId}, socketName:${socketName}`);
+		const { uniqueId, socketName, socketGubun } = data;
+		console.log(`socketGubun:${socketGubun}, uniqueId:${uniqueId}, socketName:${socketName}`);
 	});
 }
 /* 설정 세팅 =================================================================================================*/
-
 
 /* SOCKET.IO 서버 =================================================================================================*/
 // 소켓통신 이벤트 핸들러
 // connection
 socketIo.on('connection', (socket: any) => {
-	
 	// 클라이언트 정보
 	const clientInfo: clientType = {
 		clientSocket: socket,
@@ -74,17 +70,14 @@ socketIo.on('connection', (socket: any) => {
 	// 클라이언트 정보 PUSH
 	clientPool.push(clientInfo);
 
-	
 	// 접속한 클라이언트들 보여주기
 	connectClients();
-
 
 	// SERVER RECEIVE 이벤트 핸들러(클라이언트 -> 서버)
 	socket.on('disconnect', (context: any) => {
 		_.remove(clientPool, (data: any) => data.uniqueId === socket.id);
 		console.log('socket.io client disconnected!');
 	});
-
 
 	socket.on('client.msg.send', (context: any) => {
 		console.log('socket.io data:', context);
@@ -93,18 +86,16 @@ socketIo.on('connection', (socket: any) => {
 
 		// .NET 클라이언트에게로 메시지 보내기
 		clientPool.filter((data) => data.socketGubun === 'net').map((data) => {
-			
-			data.clientSocket.write(JSON.stringify({
-				action: 'client.msg.receive',
-				data: context
-			}), (err:any) => {
-				
-			});
+			data.clientSocket.write(
+				JSON.stringify({
+					action: 'client.msg.receive',
+					data: context
+				}),
+				(err: any) => {}
+			);
 		});
 	});
 });
-
-
 
 // app.use(bodyParser());
 
@@ -126,8 +117,6 @@ server.listen(socketIoPort, ip, (err: any) => {
 });
 /* SOCKET.IO 서버 =================================================================================================*/
 
-
-
 /* NET 서버 =======================================================================================================*/
 // net 서버 listen
 // const netServer = net.createServer((socket: any) => {
@@ -147,7 +136,6 @@ const netServer = net.createServer((socket) => {
 	// 	console.log('접속 클라이언트들:', data.socketName, data.uniqueId);
 	// });
 
-
 	// 클라이언트 정보
 	const clientInfo: clientType = {
 		clientSocket: socket,
@@ -156,21 +144,19 @@ const netServer = net.createServer((socket) => {
 		socketGubun: 'net'
 	};
 
-	
-
 	// 클라이언트에게 uniqueId 를 전송함
-	socket.write(JSON.stringify({
-	 	action: 'client.msg.connected',
-	 	data: clientInfo.uniqueId
-	}));
+	socket.write(
+		JSON.stringify({
+			action: 'client.msg.connected',
+			data: clientInfo.uniqueId
+		})
+	);
 
 	// 클라이언트 정보 PUSH
 	clientPool.push(clientInfo);
 
-
 	// 접속한 클라이언트들 보여주기
 	connectClients();
-
 
 	socket.on('data', (data) => {
 		const msg = data.toString();
@@ -196,11 +182,9 @@ const netServer = net.createServer((socket) => {
 
 	socket.on('end', () => {
 		console.log('NET Socket Client end!');
-	})
-
-	 socket.on('error', (err) => {
-		
 	});
+
+	socket.on('error', (err) => {});
 });
 
 netServer.on('connection', (conn) => {

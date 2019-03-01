@@ -1,0 +1,14 @@
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\obj\Debug\TcpNetClient.csprojAssemblyReference.cache
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\obj\Debug\SocketNetClient.Properties.Resources.resources
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\obj\Debug\TcpNetClient.csproj.GenerateResource.cache
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\obj\Debug\TcpNetClient.csproj.CoreCompileInputs.cache
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\obj\Debug\SocketNetClient.exe
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\obj\Debug\SocketNetClient.pdb
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\obj\Debug\TcpNetClient.Form1.resources
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\bin\Debug\SocketNetClient.exe.config
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\bin\Debug\SocketNetClient.exe
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\bin\Debug\SocketNetClient.pdb
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\bin\Debug\Newtonsoft.Json.dll
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\bin\Debug\Newtonsoft.Json.pdb
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\bin\Debug\Newtonsoft.Json.xml
+H:\#2. Project\Nodejs\node_socket_prj\TcpNetClient\obj\Debug\TcpNetClient.csproj.CopyComplete
