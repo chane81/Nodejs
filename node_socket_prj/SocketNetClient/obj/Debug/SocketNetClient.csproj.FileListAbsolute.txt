@@ -43,3 +43,6 @@ C:\Users\chane\OneDrive\바탕 화면\SocketNetClient\obj\Debug\SocketNetClient.
 C:\Users\chane\OneDrive\바탕 화면\SocketNetClient\obj\Debug\SocketNetClient.csproj.CopyComplete
 C:\Users\chane\OneDrive\바탕 화면\SocketNetClient\obj\Debug\SocketNetClient.exe
 C:\Users\chane\OneDrive\바탕 화면\SocketNetClient\obj\Debug\SocketNetClient.pdb
+H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\bin\Debug\EngineIoClientDotNet.dll
+H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\bin\Debug\SocketIoClientDotNet.dll
+H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\bin\Debug\WebSocket4Net.dll

@@ -1,22 +1,27 @@
 {
-  "name": "create-next-example-app",
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "@zeit/next-sass": "^1.0.1",
-    "core-js": "^2.6.5",
-    "es6-promise": "^4.2.6",
-    "immutable": "^4.0.0-rc.12",
-    "next": "^7.0.2",
-    "node-sass": "^4.11.0",
-    "promise": "^8.0.2",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "socket.io-client": "^2.2.0",
-    "whatwg-fetch": "^3.0.0"
-  }
+	"name": "create-next-example-app",
+	"scripts": {
+		"dev": "cross-env NODE_ENV=development node server.js",
+		"build": "next build",
+		"start": "cross-env NODE_ENV=production node server.js"
+	},
+	"dependencies": {
+		"@zeit/next-sass": "^1.0.1",
+		"core-js": "^2.6.5",
+		"cross-env": "^5.2.0",
+		"es6-promise": "^4.2.6",
+		"immutable": "^4.0.0-rc.12",
+		"koa": "^2.7.0",
+		"koa-bodyparser": "^4.2.1",
+		"koa-router": "^7.4.0",
+		"koa2-cors": "^2.0.6",
+		"next": "^7.0.2",
+		"node-sass": "^4.11.0",
+		"promise": "^8.0.2",
+		"prop-types": "^15.7.2",
+		"react": "^16.8.3",
+		"react-dom": "^16.8.3",
+		"socket.io-client": "^2.2.0",
+		"whatwg-fetch": "^3.0.0"
+	}
 }

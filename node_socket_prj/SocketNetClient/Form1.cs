@@ -56,10 +56,14 @@ namespace SocketNetClient
                 this.isDisconnected = false;
             });
 
+            // 연결이 끊겼을 때
             socket.On(Socket.EVENT_DISCONNECT, () =>
             {
                 ShowBoxHandler("서버와의 연결이 끊어졌습니다.");
             });
+
+            // 메시지 받았을 때
+            ReceiveProcess();
         }
 
         /// <summary>

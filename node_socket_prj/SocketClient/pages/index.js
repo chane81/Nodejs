@@ -4,6 +4,7 @@ import Head from '../components/Head'
 import io from 'socket.io-client'
 import styles from '../style/index.scss';
 import ChatMsgBox from '../components/ChatMsgBox'
+import config from '../config.js';
 
 //const Index = () => {
 class Index extends Component {
@@ -23,11 +24,14 @@ class Index extends Component {
 
   // 소켓 연결
   componentDidMount () {
-    const socket = io("http://localhost:5000", {
+    console.log(config);
+    //const socket = io.connect("https://socket-server-node.herokuapp.com", {
+    const socket = io(config.socketServerHost, {
       transports: ['websocket', 'polling'],
       query: {
         socketName: this.state.socketName
-      }
+      },
+      secure: true
     });
 
     socket.on('client.msg.receive', async context => {
