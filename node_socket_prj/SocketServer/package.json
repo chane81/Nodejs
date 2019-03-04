@@ -43,6 +43,6 @@
 		"build": "webpack --mode development --config ./config/webpack.config.js"
 	},
 	"engines": {
-		"node": "10.15.1"
+		"node": "10.15.2"
 	}
 }
