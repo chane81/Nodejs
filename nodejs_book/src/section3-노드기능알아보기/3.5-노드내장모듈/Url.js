@@ -1,5 +1,5 @@
 const log = console.log;
-const { URL } = require('url');
+const url = require('url');
 
 
 const myUrl = new URL('https://shopping.naver.com/art/event/28300');

@@ -19,7 +19,6 @@ H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\bin\Debug\Newtonsoft.Json.
 H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\bin\Debug\Newtonsoft.Json.pdb
 H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\bin\Debug\Newtonsoft.Json.xml
 H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.csprojAssemblyReference.cache
-H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.Form1.resources
 H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.Properties.Resources.resources
 H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.csproj.GenerateResource.cache
 H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.csproj.CoreCompileInputs.cache
@@ -46,3 +45,4 @@ C:\Users\chane\OneDrive\바탕 화면\SocketNetClient\obj\Debug\SocketNetClient.
 H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\bin\Debug\EngineIoClientDotNet.dll
 H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\bin\Debug\SocketIoClientDotNet.dll
 H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\bin\Debug\WebSocket4Net.dll
+H:\#2. Project\Nodejs\node_socket_prj\SocketNetClient\obj\Debug\SocketNetClient.MessageModel.resources

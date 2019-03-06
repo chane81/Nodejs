@@ -127,7 +127,14 @@ class Index extends Component {
             {msgBox}
           </div>
           <div className={'chat-input-box shadow'} onClick={this.handleBoxClick}>
-              <input onChange={this.handleChange} ref={ref => { this.txtChat = ref }} onKeyPress={this.handleSendKeyPress} value={txtValue} type="text"></input>
+              <input 
+                onChange={this.handleChange} 
+                ref={ref => { this.txtChat = ref }} 
+                onKeyPress={this.handleSendKeyPress} 
+                value={txtValue} 
+                type="text"
+                placeholder="메시지를 입력해 주세요!"
+              ></input>
               <span className={'btn-add-container'} onClick={this.handleSend}>
                 <i className={"fas fa-plus btn-add"}></i>
               </span>

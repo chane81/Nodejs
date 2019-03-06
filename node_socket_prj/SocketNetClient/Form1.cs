@@ -14,12 +14,21 @@ using Quobject.SocketIoClientDotNet.Client;
 
 namespace SocketNetClient
 {
+    public class MessageModel
+    {
+        public string message { get; set; }
+        public string nickName { get; set; }
+        public string nickId { get; set; }
+        public bool isSelf { get; set; }
+    }
+
     public partial class Form1 : Form
     {
         #region 변수선언
         Socket socket;
         string strUuid;
         bool isDisconnected;
+        MessageModel messageModel;
         #endregion
 
         #region 메소드
@@ -30,6 +39,7 @@ namespace SocketNetClient
             this.strUuid = string.Empty;
             this.txtShowMsg.ForeColor = Color.Navy;
             this.isDisconnected = true;
+            messageModel = new MessageModel { nickName = "닷넷유저", isSelf = true, nickId = "75", message = "" };
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -106,7 +116,13 @@ namespace SocketNetClient
             //string strAction = resultJson["action"].ToString();
 
             // 서버로부터 메시지 받았을 때
-            socket.On("client.msg.receive", (data) => ShowBoxHandler(data.ToString()));
+            socket.On("client.msg.receive", (data) => {
+                MessageModel receiveModel = JsonConvert.DeserializeObject<MessageModel>(data.ToString());
+                string result = "보낸이:" + receiveModel.nickName + "//"
+                    + "메시지:" + receiveModel.message;
+                ShowBoxHandler(result);
+
+             });
 
         }
 
@@ -124,7 +140,6 @@ namespace SocketNetClient
         private void btnClose_Click(object sender, EventArgs e)
         {
             socket.Disconnect();
-            ShowBoxHandler("서버와의 연결이 끊어졌습니다.");
         }
 
         /// <summary>
@@ -134,8 +149,11 @@ namespace SocketNetClient
         {
             if (isDisconnected == false)
             {
-                socket.Emit("client.msg.send", this.txtSendMsg.Text);
-                ShowBoxHandler("send msg:" + this.txtSendMsg.Text);
+                messageModel.message = this.txtSendMsg.Text;
+                string strJson = JsonConvert.SerializeObject(messageModel);
+
+                socket.Emit("client.msg.send", strJson);
+                ShowBoxHandler("send msg:" + messageModel.message);
                 this.txtSendMsg.Clear();
             } else
             {
