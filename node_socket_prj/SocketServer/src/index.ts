@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import koa from 'koa';
 import router from 'koa-router';
 import http from 'http';
+import https from 'https';
 import bodyParser from 'koa-bodyparser';
 import cors from 'koa2-cors';
 import net from 'net';
@@ -16,11 +17,12 @@ const server = new http.Server(app.callback());
 const socketIo = io(server, {
 	pingInterval: 10000, // ping 인터벌
 	pingTimeout: 10000, // ping 타임아웃
-	transports: [ 'websocket', 'polling' ]
+	transports: [ 'websocket', 'polling' ],
+	origins: '*:*'
 });
 
 // 포트
-const socketIoPort: number = Number(process.env.SOCKET_IO_PORT) || 5000;
+const socketIoPort: number = Number(process.env.PORT) || Number(process.env.SOCKET_IO_PORT) || 5000;
 const ip: string = process.env.IP || '127.0.0.1';
 const netPort: number = Number(process.env.NET_PORT) || 5001;
 
@@ -36,11 +38,7 @@ interface clientType {
 }
 
 // CORS 관련 옵션 설정
-app.use(
-	cors({
-		origin: (ctx) => '*'
-	})
-);
+app.use(cors());
 
 // 접속 클라이언틑 정보
 const clientPool: clientType[] = [];
@@ -66,6 +64,8 @@ socketIo.on('connection', (socket: any) => {
 		socketName: socket.handshake.query.socketName,
 		socketGubun: 'socket.io'
 	};
+
+	console.log('연결됨');
 
 	// 클라이언트 정보 PUSH
 	clientPool.push(clientInfo);
@@ -111,9 +111,9 @@ socketIo.on('connection', (socket: any) => {
 //app.use(router.routes());
 
 // socket.io 서버 listen
-server.listen(socketIoPort, ip, (err: any) => {
+server.listen(socketIoPort, (err: any) => {
 	if (err) throw err;
-	console.log(`> SOCKET.IO Server Listening! http://localhost:${socketIoPort}`);
+	console.log(`> SOCKET.IO Server Listening! port:${socketIoPort}`);
 });
 /* SOCKET.IO 서버 =================================================================================================*/
 
@@ -126,9 +126,7 @@ server.listen(socketIoPort, ip, (err: any) => {
 // 		console.log('> NET Server End');
 // 	});
 
-// 	socket.on('');
-// });
-const netServer = net.createServer((socket) => {
+const netServer = net.createServer((socket: any) => {
 	const remoteAddress = socket.remoteAddress + ':' + socket.remotePort;
 	console.log('client connected:', remoteAddress);
 
@@ -158,7 +156,7 @@ const netServer = net.createServer((socket) => {
 	// 접속한 클라이언트들 보여주기
 	connectClients();
 
-	socket.on('data', (data) => {
+	socket.on('data', (data: any) => {
 		const msg = data.toString();
 		console.log('net data:', msg);
 
@@ -184,7 +182,7 @@ const netServer = net.createServer((socket) => {
 		console.log('NET Socket Client end!');
 	});
 
-	socket.on('error', (err) => {});
+	socket.on('error', (err: any) => {});
 });
 
 netServer.on('connection', (conn) => {
@@ -195,7 +193,7 @@ netServer.on('connection', (conn) => {
 	//console.log(conn);
 });
 
-netServer.listen(netPort, ip, () => {
-	console.log(`> NET Server Listening! 127.0.0.1:${netPort}`);
-});
+// netServer.listen(netPort, () => {
+// 	console.log(`> NET Server Listening! port:${netPort}`);
+// });
 /* NET 서버 =======================================================================================================*/

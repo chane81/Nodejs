@@ -6134,7 +6134,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!******************************************************!*\
   !*** multi ./node_modules/next/dist/pages/_error.js ***!
   \******************************************************/
@@ -6142,7 +6142,7 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __NEXT_REGISTER_PAGE('/_error', function() {
-module.exports = __webpack_require__(/*! H:\#2. Project\Nodejs\node_socket_prj\SocketClient\node_modules\next\dist\pages\_error.js */"./node_modules/next/dist/pages/_error.js");
+module.exports = __webpack_require__(/*! h:\#2. Project\Nodejs\node_socket_prj\SocketClient\node_modules\next\dist\pages\_error.js */"./node_modules/next/dist/pages/_error.js");
 
 return { page: module.exports.default }});
 
@@ -6159,5 +6159,5 @@ module.exports = dll_aea5a84f9025b36d9dbf;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]));;
+},[[3,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=_error.js.map

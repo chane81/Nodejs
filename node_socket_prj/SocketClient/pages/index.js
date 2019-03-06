@@ -5,89 +5,106 @@ import io from 'socket.io-client'
 import styles from '../style/index.scss';
 import ChatMsgBox from '../components/ChatMsgBox'
 import config from '../config.js';
+import ModalWrapper from '../components/ModalWrapper'
+import { inject, observer } from 'mobx-react'
+import ModalWrapperContainer from '../containers/ModalWrapperContainer';
+import { onAction, onPatch } from 'mobx-state-tree';
+import { autorun }from 'mobx';
 
-//const Index = () => {
+
+
+// @inject('store')
+// @observer
 class Index extends Component {
-
-  state = {
-    socket: null,
-    socketName: '테스트',
-    txtValue: '',
-    chat: []
-  };
 
   // 스크롤 맨 아래로
   fnScrollMove() {
     const { scrollHeight, clientHeight } = this.chatBox;
     this.chatBox.scrollTop = scrollHeight - clientHeight;
+
+    //this.chatBox.scrollToBottom();
   }
 
   // 소켓 연결
   componentDidMount () {
-    console.log(config);
-    //const socket = io.connect("https://socket-server-node.herokuapp.com", {
-    const socket = io(config.socketServerHost, {
-      transports: ['websocket', 'polling'],
-      query: {
-        socketName: this.state.socketName
-      },
-      secure: true
+    const { store } = this.props;
+
+    console.log('config:', config);
+
+    const { socket, setSocket, setSocketConnect, setMessagesPush } = store.socketModel;
+
+    // autorun(() => {
+    //   console.log('test');
+    // })
+    
+    // mobx-state-tree patch 이벤트 핸들러
+    // onPatch(store, patch => {
+    //   console.log("onPatch");
+    //   console.log(patch);
+    // });
+
+    // mobx-state-tree action 이벤트 핸들러 - 닉네임변경 액션이 발생했을 때 메세지 입력 input 쪽으로 focus 가 가도록 수정함
+    onAction(store, action => {
+      if (action.name === "setCurrentNickName") {
+        // 바로 포커스가 가지 않아서 setTimeout(1초) 를 줌
+        setTimeout(() => {
+          this.txtChat.focus();
+        }, 1000);
+      }
     });
 
-    socket.on('client.msg.receive', async context => {
-      console.log('받은메시지:', context);
 
-      // state 에 메시지 담기
-      await this.setState({
-        chat: [...this.state.chat, { isSelf:false, msg: context }]
+    if (socket == null) {
+      const socketIo = io(config.socketServerHost, {
+        transports: ['websocket', 'polling'],
+        query: {
+          socketName: "테스트"
+        },
+        secure: true
       });
 
-      // 스크롤 맨 아래로
-      this.fnScrollMove();
-    });
+      // 접속한 소켓 set
+      socketIo.on("connect", () => {
+        setSocket(socketIo);
+      });
 
-    // state 에 socket 객체 담기
-    this.setState({ socket });
+      socketIo.on('client.msg.receive', context => {
+        console.log('받은메시지:', context);
+
+        const receiveMsg = JSON.parse(context);
+
+        // 메시지들 배열에 push
+        setMessagesPush({ ...receiveMsg, isSelf: false });
+
+        this.fnScrollMove();
+      });
+
+      socketIo.on('connect_error', function(err) {
+        console.log('socket error');
+      });
+  
+      socketIo.on("disconnect", () => {
+        console.log('서버 disconnected!');
+      });
+    }
   }
 
   // 소켓 종료
   componentWillUnmount () {
-    this.state.socket.close()
+    const { store } = this.props;
+    store.socketModel.setSocketClose();
   }
 
-
-  // this.state.socket.on('connect', () => {
-
-  // })
-
-  
   // 소켓 전송
+  // setSendMessage 가 비동기 이므로 async await 를 써서 스크롤 맨아래로내리는 부분 제대로 수행되게 함
   handleSend = async (e) => {
-    if (this.state.txtValue.trim() === "") {
-      alert('메시지를 입력해주세요!');
+    const { store } = this.props;
 
-      this.setState({ 
-        txtValue: ''
-      });
+    // socket emit
+    await store.socketModel.setSendMessage(this.txtChat.value);
 
-    } else {
-      // 서버에 메시지 전송
-      const socket  = this.state.socket;
-
-      socket.emit('client.msg.send', this.state.txtValue, context => {
-        console.log('client send 이벤트');
-        //console.log(context);
-      });
-
-      // state 에 메시지 담기
-      await this.setState({ 
-        txtValue: '',
-        chat: [...this.state.chat, { isSelf:true, msg: this.state.txtValue }]
-      });
-
-      // 스크롤 맨 아래로
-      this.fnScrollMove();
-    }
+    // 스크롤 맨 아래로
+    this.fnScrollMove();
   };
 
   // 입력창에서 엔터키 눌렀을 때
@@ -99,9 +116,8 @@ class Index extends Component {
 
   // 전송할 텍스트 입력
   handleChange = (e) => {
-    this.setState({
-      txtValue: e.target.value
-    })
+    const { store } = this.props;
+    store.socketModel.setCurrentMessage(e.target.value);
   };
 
   // 챗박스 감싸고 있는 부분 클릭시 인풋박스 포커스이동되게 함
@@ -110,13 +126,18 @@ class Index extends Component {
   }
 
   render () {
-    const { txtValue, chat } = this.state;
-    const msgBox = chat.map((data, index) => (
-        <ChatMsgBox isSelf={data.isSelf} msg={data.msg} key={index}></ChatMsgBox>  
-    ));
+    const { store } = this.props;
+    const { messages, getModalVisible, currentMessage: { message } } = store.socketModel;
 
-    //console.log(msgBox);
-    
+    const msgBox = messages.map((data, index) => 
+      <ChatMsgBox 
+        isSelf={data.isSelf}
+        message={data.message}
+        nickName={data.nickName}
+        nickId={data.nickId}
+        key={index}
+      />
+    );
 
     return (
       <div>
@@ -131,7 +152,7 @@ class Index extends Component {
                 onChange={this.handleChange} 
                 ref={ref => { this.txtChat = ref }} 
                 onKeyPress={this.handleSendKeyPress} 
-                value={txtValue} 
+                value={message} 
                 type="text"
                 placeholder="메시지를 입력해 주세요!"
               ></input>
@@ -140,9 +161,12 @@ class Index extends Component {
               </span>
             </div>
           </div>
+          <ModalWrapperContainer></ModalWrapperContainer>
       </div>
     );
   }
 }
 
-export default Index
+export default inject(({ store }) => ({ store }))(observer(Index));
+
+//export default Index
