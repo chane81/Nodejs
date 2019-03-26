@@ -1,4 +1,13 @@
 {
   "files.autoGuessEncoding": true,
-  "markdown-pdf.highlightStyle": "atelier-cave-light.css"
+  "markdown-pdf.highlightStyle": "atelier-cave-light.css",
+
+  // Editor 설정
+  "editor.renderWhitespace": "all",
+  "editor.tabSize": 2,
+  "editor.renderIndentGuides": false,
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  }
 }
